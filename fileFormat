@@ -1,0 +1,12 @@
+project_directory/
+│
+├── app.py
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── script.js
+├── templates/
+│   └── index.html
+├── text.txt
+└── temp.json

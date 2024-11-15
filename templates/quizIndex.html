@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-header h1 {
+            font-size: 2em;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+
+        #course-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        /* Question styles */
+        .questiondiv {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .questiondiv h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .questiondiv p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        /* Options styles */
+        .optionsdiv {
+            margin: 20px 0;
+        }
+
+        .optionsdiv div {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .optionsdiv div:hover {
+            background-color: #f8f9fa;
+        }
+
+        .optionsdiv input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .optionsdiv label {
+            cursor: pointer;
+            display: inline-block;
+            width: calc(100% - 30px);
+            vertical-align: middle;
+        }
+
+        /* Button styles */
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        #show-results-button {
+            display: block;
+            margin: 20px auto;
+            background-color: #27ae60;
+        }
+
+        #show-results-button:hover {
+            background-color: #219a52;
+        }
+
+        /* Explanation and feedback styles */
+        .explanation {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .correct {
+            color: #27ae60;
+            background-color: #eafaf1;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .incorrect {
+            color: #c0392b;
+            background-color: #fdeaea;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #c0392b;
+        }
+
+        .error {
+            color: #e67e22;
+            background-color: #fef5e9;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #e67e22;
+        }
+
+        /* Results section styles */
+        #results {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        #results h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        #results p {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        /* Difficulty badge */
+        .Difficulty {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        .easy {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .medium {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .hard {
+            background-color: #ffeaea;
+            color: #c62828;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .questiondiv {
+                padding: 15px;
+            }
+
+            button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-header">
+        <h1>Craftify Quiz Challenge</h1>
+    </div>
+    <button id="show-results-button" style="display: none;">Show Results</button>
+    <header>
+        <h1 id="course-title">Loading course content...</h1>
+    </header>
+    <main id="quiz-content">
+        <!-- Course content will be dynamically inserted here -->
+    </main>
+    
+    <div id="results" style="display: none;"></div>
+    
+    <script src="{{ url_for('static', filename='scriptQuiz.js') }}"></script>
+</body>
+</html>
